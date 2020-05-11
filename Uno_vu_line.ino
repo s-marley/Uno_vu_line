@@ -13,7 +13,7 @@
 # define BTN_PIN 3                  // Push button on this pin [3]
 # define DEBOUNCE_MS 20             // Number of ms to debounce the button [20]
 # define LONG_PRESS 500             // Number of ms to hold the button to count as long press [500]
-# define N_PIXELS 17                // Number of pixels in each string [24]
+# define N_PIXELS 18                // Number of pixels in each string [24]
 # define MAX_MILLIAMPS 500          // Maximum current to draw [500]
 # define COLOR_ORDER GRB            // Colour order of LED strip [GRB]
 # define LED_TYPE WS2812B           // LED string type [WS2812B]
@@ -24,7 +24,7 @@
 # define PEAK_FALL 20               // Rate of peak falling dot [20]
 # define N_PIXELS_HALF (N_PIXELS / 2)
 # define PATTERN_TIME 10            // Seconds to show eaach pattern on auto [10]
-# define STEREO false                // If true, L&R channels are independent. If false, both L&R outputs display same data from L audio channel [false]
+# define STEREO true                // If true, L&R channels are independent. If false, both L&R outputs display same data from L audio channel [false]
 
 uint8_t volCountLeft = 0;           // Frame counter for storing past volume data
 int volLeft[SAMPLES];               // Collection of prior volume samples
@@ -63,7 +63,7 @@ void rainbow(uint8_t rate);
 // --------------------
 uint8_t state = 0;
 int buttonPushCounter = 0;
-bool autoChangeVisuals = false;
+bool autoChangeVisuals = true;
 Button modeBtn(BTN_PIN, DEBOUNCE_MS);
 
 
@@ -83,7 +83,8 @@ void setup() {
   modeBtn.begin();
   Serial.begin(57600);
 
-  buttonPushCounter = (int)EEPROM.read(1); // load previous setting
+  //buttonPushCounter = (int)EEPROM.read(1); // load previous setting
+  buttonPushCounter = 0;
   Serial.print("Starting pattern ");
   Serial.println(buttonPushCounter);
 }
@@ -95,8 +96,8 @@ void loop() {
   switch (state) {
     case 0:                
       if (modeBtn.wasReleased()) {
-        //Serial.print("Short press, pattern ");
-        //Serial.println(buttonPushCounter);
+        Serial.print("Short press, pattern ");
+        Serial.println(buttonPushCounter);
         incrementButtonPushCounter();
         autoChangeVisuals = false;
       }
@@ -107,8 +108,8 @@ void loop() {
     case 1:
       if (modeBtn.wasReleased()) {
         state = 0;
-        //Serial.print("Long press, auto, pattern ");
-        //Serial.println(buttonPushCounter);
+        Serial.print("Long press, auto, pattern ");
+        Serial.println(buttonPushCounter);
         autoChangeVisuals = true;
       }
       break;
@@ -118,8 +119,8 @@ void loop() {
   if(autoChangeVisuals){
     EVERY_N_SECONDS(PATTERN_TIME) { 
       incrementButtonPushCounter();
-      //Serial.print("Auto, pattern ");
-      //Serial.println(buttonPushCounter); 
+      Serial.print("Auto, pattern ");
+      Serial.println(buttonPushCounter); 
     }
   }
 
@@ -220,8 +221,6 @@ uint16_t auxReading(uint8_t channel) {
   if(channel == 0) {
     int n = analogRead(LEFT_IN_PIN); // Raw reading from left line in
     n = abs(n - 512 - DC_OFFSET); // Center on zero
-    Serial.print(n);
-    Serial.print(",");
     n = (n <= NOISE) ? 0 : (n - NOISE); // Remove noise/hum
     lvlLeft = ((lvlLeft * 7) + n) >> 3; // "Dampened" reading else looks twitchy (>>3 is divide by 8)
     volLeft[volCountLeft] = n; // Save sample for dynamic leveling
@@ -243,8 +242,6 @@ uint16_t auxReading(uint8_t channel) {
 
   // Calculate bar height based on dynamic min/max levels (fixed point):
   height = constrain(height, 0, TOP);
-
-  //Serial.println(height);
   return height;
 }
 
