@@ -2,9 +2,12 @@
 // -- VU Meter - Scott's version --
 // --------------------------------
 
+// IMPORTANT: To run this you will need to install the JC_Button library
+// Go to Tools -> Manage libraries, search JC_Button and install
+
 #include <FastLED.h>
 #include <EEPROM.h>
-#include "Button.h"
+#include <JC_Button.h>
 
 # define LEFT_OUT_PIN 6         // Left channel data out pin to LEDs
 # define RIGHT_OUT_PIN 5        // Right channel data out pin to LEDs
