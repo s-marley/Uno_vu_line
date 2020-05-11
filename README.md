@@ -10,24 +10,19 @@ Code written to run on the Arduino Nano or Uno to drive LED strips such as WS281
 - Completely open source and hackable. Create your own patterns or use it in whatever you like!
 
 ## Demo
-Click the image below for a low-production-value video of it in action.
+Click the image below 
 
 [![Youtube video of VU meter in action](http://img.youtube.com/vi/hp5lur1MnSQ/0.jpg)](http://www.youtube.com/watch?v=hp5lur1MnSQ "VU Demo")
 
 ## Installation and code usage
-If you have purchased the pre-made PCB from me, make the connections as shown below:
-
-![Wiring schematic](Vu_pcb_annotated_s.png?s=100)
-
 If you want to make this on your own, the schematic that I have used is:
 
 ![Wiring schematic](Uno_vu_line_schem.png?)
 
-1. Download this repository and unzip it somewhere. The unzipped folder must be called `Uno_vu_line`.
+1. Download this repository and unzip it somewhere. You **must** rename the unzipped folder `Uno_vu_line`.
 2. Open the [Arduino IDE](https://www.arduino.cc/en/Main/Software) then open `Uno_vu_line.ino`
-3. You will need the FastLED library. In the IDE, go to `Sketch` -> `Include Library` -> `Manage Libraries`. Search for `FastLED` and install the latest version.
+3. You will need the FastLED and JC_Button libraries installed. In the IDE, go to `Tools` -> `Manage Libraries`. Search for `FastLED` and install the latest version and do the same with `JC_Button`.
 4. On the `Uno_vu_line.ino` tab, find the line that says `# define N_PIXELS` and change the number after it to the number of LEDs you have in each string.
-5. If you have bought a PCB from me, you will need to install the [USB drivers](https://drive.google.com/open?id=1QWyCRj3grbXNlr3NvQr_udWQ5WOxqaAy) for the Nano.
 6. Plug in the Arduino and upload the code in the usual way, ensuring that the correct board type and com port are selected in the `Tools` menu.
 
 ## Extra info
