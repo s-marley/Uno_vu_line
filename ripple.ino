@@ -46,12 +46,8 @@ void ripple(boolean show_background) {
     }
   }
 
-  #ifdef TWO_STRIPS
   // Copy left LED array into right LED array
-  for (uint8_t i = 0; i < N_PIXELS; i++) {
-    ledsRight[i] = ledsLeft[i];
-  }
-  #endif
+  copyLeftToRight();
   
   FastLED.show();
   delay(50);

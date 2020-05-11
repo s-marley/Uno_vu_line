@@ -36,13 +36,16 @@ void soundtun() {
     ledsLeft[i] = ledsLeft[i - 1];
   }
 
-  #ifdef TWO_STRIPS
+  if (STEREO) {
     int sampleRight = abs(analogRead(RIGHT_IN_PIN) - 512 - DC_OFFSET);
     CRGB newcolourRight = ColorFromPalette(currentPalette, constrain(sampleRight, 0, 255), constrain(sampleRight, 0, 255), LINEARBLEND);
     nblend(ledsRight[0], newcolourRight, 128);
     for (int i = 0; i < N_PIXELS; i++) {
       ledsRight[i] = ledsRight[i + 1];
     }
-  #endif
+  }
+  else {
+    copyLeftToRight();
+  }
 
 }

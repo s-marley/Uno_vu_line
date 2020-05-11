@@ -16,12 +16,10 @@ void vu6(bool is_centered, uint8_t channel) {
     leds = ledsLeft;    // Store address of peakLeft in peak, then use *peak to
     peak = &peakLeft;   // access the value of that address
   }
-  #ifdef TWO_STRIPS
-    else {
+  else {
       leds = ledsRight;
       peak = &peakRight;
-    }
-  #endif
+  }
 
   if(height > *peak)
     *peak = height; // Keep 'peak' dot at top

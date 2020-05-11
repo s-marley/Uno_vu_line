@@ -22,13 +22,6 @@ void vu7(boolean show_background) {
   EVERY_N_MILLISECONDS(20) {
     ripple3(show_background);
   }
-
-  #ifdef TWO_STRIPS
-    // Copy left LED array into right LED array
-    for (uint8_t i = 0; i < N_PIXELS; i++) {
-      ledsRight[i] = ledsLeft[i];
-    }
-  #endif
   
   FastLED.show();
 }
@@ -39,7 +32,7 @@ void soundmems() { // Rolling average counter - means we don't have to go throug
   static unsigned long samplesum;
   static unsigned long oldtime;
   unsigned long newtime = millis();
-  unsigned int sample = abs(analogRead(LEFT_IN_PIN) - 512);
+  unsigned int sample = abs(analogRead(LEFT_IN_PIN) -512);
   
   samplesum = samplesum + sample - volLeft[samplecount]; // Add the new sample and remove the oldest sample in the array 
   sampleavg = samplesum / SAMPLES; // Get an average

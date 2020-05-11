@@ -47,19 +47,15 @@ void balls() {
   for (int i = 0; i < NUM_BALLS; i++) ledsLeft[pos[i]] = CHSV(uint8_t(i * 40), 255, 255);
 
   // Copy left LED array into right LED array
-  #ifdef TWO_STRIPS
   for (uint8_t i = 0; i < N_PIXELS; i++) {
     ledsRight[i] = ledsLeft[i];
   }
-  #endif
   
   FastLED.show();
   
   //Then off for the next loop around
   for (int i = 0; i < NUM_BALLS; i++) {
     ledsLeft[pos[i]] = CRGB::Black;
-    #ifdef TWO_STRIPS
-      ledsRight[pos[i]] = CRGB::Black;
-    #endif
+    ledsRight[pos[i]] = CRGB::Black;
   }
 }

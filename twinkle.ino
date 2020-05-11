@@ -10,14 +10,11 @@ void twinkle() {
   }
   fadeToBlackBy(ledsLeft, N_PIXELS, FADE_RATE);
 
-  
-  #ifdef TWO_STRIPS
-    if (random(25) == 1) {
-      uint16_t i = random(N_PIXELS);
-      ledsRight[i] = CRGB(random(256), random(256), random(256));
-    }
-    fadeToBlackBy(ledsRight, N_PIXELS, FADE_RATE);
-  #endif
+  if (random(25) == 1) {
+    uint16_t i = random(N_PIXELS);
+    ledsRight[i] = CRGB(random(256), random(256), random(256));
+  }
+  fadeToBlackBy(ledsRight, N_PIXELS, FADE_RATE);
   
   FastLED.show();
   delay(10);

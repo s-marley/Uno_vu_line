@@ -13,12 +13,10 @@ void vu4(bool is_centered, uint8_t channel) {
     leds = ledsLeft;    // Store address of peakLeft in peak, then use *peak to
     peak = &peakLeft;   // access the value of that address
   }
-  #ifdef TWO_STRIPS
-    else {
-      leds = ledsRight;
-      peak = &peakRight;
-    }
-  #endif
+  else {
+    leds = ledsRight;
+    peak = &peakRight;
+  }
   
   // Draw vu meter part
   fill_solid(leds, N_PIXELS, CRGB::Black);
@@ -62,9 +60,7 @@ void vu4(bool is_centered, uint8_t channel) {
   }
 
   dropPeak(channel);
-
   averageReadings(channel);
-
   FastLED.show();
 }
 
@@ -72,4 +68,3 @@ uint8_t rainbowHue2(uint8_t pixel, uint8_t num_pixels) {
   uint8_t hue = 96 - pixel * (145 / num_pixels);
   return hue;
 }
-
