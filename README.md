@@ -12,7 +12,7 @@ Code written to run on the Arduino Nano or Uno to drive LED strips such as WS281
 ## Demo
 Click the image below 
 
-[![Youtube video of VU meter in action](http://img.youtube.com/vi/hp5lur1MnSQ/0.jpg)](http://www.youtube.com/watch?v=hp5lur1MnSQ "VU Demo")
+[![Youtube video of VU meter in action](http://img.youtube.com/vi/jhyUqx6inwI/0.jpg)](https://www.youtube.com/watch?v=jhyUqx6inwI)
 
 ## Installation and code usage
 If you want to make this on your own, the schematic that I have used is:
