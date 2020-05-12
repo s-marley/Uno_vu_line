@@ -19,7 +19,7 @@
 # define LED_TYPE WS2812B           // LED string type [WS2812B]
 # define DC_OFFSET 0                // DC offset in aux signal [0]
 # define NOISE 20                   // Noise/hum/interference in aux signal [10]
-# define SAMPLES 16                 // Length of buffer for dynamic level adjustment [16]
+# define SAMPLES 60                 // Length of buffer for dynamic level adjustment [60]
 # define TOP (N_PIXELS + 2)         // Allow dot to go slightly off scale [(N_PIXELS + 2)]
 # define PEAK_FALL 20               // Rate of peak falling dot [20]
 # define N_PIXELS_HALF (N_PIXELS / 2)
