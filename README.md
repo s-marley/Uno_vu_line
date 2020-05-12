@@ -6,7 +6,7 @@ Code written to run on the Arduino Nano or Uno to drive LED strips such as WS281
 - 7 standby patterns that move without audio input.
 - Press the button to change pattern, long press to automatically cycle through patterns.
 - Remembers the last pattern that you used when you power it off and returns to it on power on.
-- Supports 75 LEDs per channel (150 total) on Uno and Nano. Much more on Mega etc.
+- Supports 75 LEDs per channel (150 total) on Uno and Nano. Much more on Mega etc. If you need more LEDs, on something like a nano, see extra info below.
 - Completely open source and hackable. Create your own patterns or use it in whatever you like!
 
 ## Demo
@@ -31,6 +31,7 @@ Building this on a breadboard is relatively simple, it could look something like
 
 ## Extra info
 - The more LEDs you have, the more power you will need to provide. Make sure your power source is able to cope.
+- If you need to use longer strips and you are running out of RAM, you can reduce `SAMPLES` to something less than 60. The lower the number is, the the more flickery the VU will be, but you will be able to use more LEDs
 - If the controller seems to go weird, I've found a quick reflash of the code usually clears it up quickly.
 - This project is for entertainment purposes only and the output is not calibrated in any way.
 - Code is written to run on the Nano / Uno or equivalent. Using an AVR with more SRAM will result in being able to use more LEDs.
