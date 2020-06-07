@@ -83,7 +83,7 @@ void setup() {
   modeBtn.begin();
   Serial.begin(57600);
 
-  //buttonPushCounter = (int)EEPROM.read(1); // load previous setting
+  buttonPushCounter = (int)EEPROM.read(1); // load previous setting
   buttonPushCounter = 0;
   Serial.print("Starting pattern ");
   Serial.println(buttonPushCounter);
