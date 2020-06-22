@@ -63,7 +63,7 @@ void rainbow(uint8_t rate);
 // --------------------
 uint8_t state = 0;
 int buttonPushCounter = 0;
-bool autoChangeVisuals = true;
+bool autoChangeVisuals = false;
 Button modeBtn(BTN_PIN, DEBOUNCE_MS);
 
 
